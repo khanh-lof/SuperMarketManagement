@@ -32,7 +32,7 @@ jobs:
           path: '${{ github.workspace }}/app/target/app-0.0.1-SNAPSHOT.jar'
           
       - name: Distribute jar-war file # Gửi file .jar .war đi đâu, CD nhảy vào ...
-        run: mkdir staging && cp /app/target/*.jar staging # tạo thư mục staging chứa file .jar .war sau khi build      
+        run: mkdir staging && cp '${{ github.workspace }}/app/target/*.jar' staging # tạo thư mục staging chứa file .jar .war sau khi build      
      
       - name: Make hyperlink to jar-war file # Tạo hyperlink để download build 
         uses: actions/upload-artifact@v1
