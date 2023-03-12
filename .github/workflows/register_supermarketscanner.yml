@@ -17,9 +17,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Set up Java version
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
           java-version: '11'
+        working-directory: ${{ github.workspace }}/app
 
       - name: Build with Maven
         run: mvn clean install
@@ -28,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.war'
+          path: '${{ github.workspace }}/app/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,4 +51,4 @@ jobs:
           app-name: 'supermarketscanner'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4329AE51F1A94EF1B35104BB183328D7 }}
-          package: '*.war'
+          package: '*.jar'
