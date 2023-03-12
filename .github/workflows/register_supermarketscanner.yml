@@ -23,13 +23,12 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
-        working-directory: '${{ github.workspace }}/app'
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: java-app
-          path: '${{ github.workspace }}/app/target/app-0.0.1-SNAPSHOT.jar'
+          path: '${{ github.workspace }}/target/*.war'
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,5 +49,5 @@ jobs:
         with:
           app-name: 'supermarketscanner'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_49ED7547AD6B480594C2DCD5C61943D2 }}
-          package: app-0.0.1-SNAPSHOT.jar
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4329AE51F1A94EF1B35104BB183328D7 }}
+          package: '*.war'
