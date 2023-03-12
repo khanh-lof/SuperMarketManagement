@@ -51,4 +51,4 @@ jobs:
           app-name: 'supermarketscanner'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_49ED7547AD6B480594C2DCD5C61943D2 }}
-          package: ${{ github.workspace }}/app/target/app-0.0.1-SNAPSHOT.jar
+          package: app-0.0.1-SNAPSHOT.jar
